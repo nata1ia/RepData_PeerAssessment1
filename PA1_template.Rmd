@@ -1,0 +1,32 @@
+---
+title: 'Reproducible Research: Peer Assessment 1'
+author: "nata1ia"
+date: "Saturday, November 14, 2015"
+output: html_document
+---
+
+##Loading and preprocessing the data
+Loading the dataset from github repository
+```{R}
+library(RCurl)
+library(ggplot2)
+
+  file_name = "activity.csv"
+  setInternet2(use = TRUE)
+  url_source = "https://github.com/nata1ia//blob/master/RepData_PeerAssessment1/activity.csv"
+  if (!file.exists(file_name)) download.file(url_source, destfile = file_name, method = "auto")
+
+  setClass('myDate')
+  setAs("character", "myDate", function(from) as.Date(from, format = "%Y-%m-%d"))
+
+  activity_data<-read.csv(file_name,
+                          colClasses = c("numeric", "myDate", "numeric"),
+                          header = T)
+```
+##What is mean total number of steps taken per day?
+
+##What is the average daily activity pattern?
+
+##Imputing missing values
+
+##Are there differences in activity patterns between weekdays and weekends?
