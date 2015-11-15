@@ -69,6 +69,22 @@ img {
 
 <div id="loading-and-preprocessing-the-data" class="section level2">
 <h2>Loading and preprocessing the data</h2>
+<p>Loading the dataset from github repository</p>
+<pre class="r"><code>library(RCurl)</code></pre>
+<pre><code>## Loading required package: bitops</code></pre>
+<pre class="r"><code>library(ggplot2)
+
+  file_name = &quot;activity.csv&quot;
+  setInternet2(use = TRUE)
+  url_source = &quot;https://github.com/nata1ia//blob/master/RepData_PeerAssessment1/activity.csv&quot;
+  if (!file.exists(file_name)) download.file(url_source, destfile = file_name, method = &quot;auto&quot;)
+
+  setClass('myDate')
+  setAs(&quot;character&quot;, &quot;myDate&quot;, function(from) as.Date(from, format = &quot;%Y-%m-%d&quot;))
+
+  activity_data&lt;-read.csv(file_name,
+                          colClasses = c(&quot;numeric&quot;, &quot;myDate&quot;, &quot;numeric&quot;),
+                          header = T)</code></pre>
 </div>
 <div id="what-is-mean-total-number-of-steps-taken-per-day" class="section level2">
 <h2>What is mean total number of steps taken per day?</h2>
